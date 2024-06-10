@@ -75,6 +75,8 @@ def kmp_search(string, patt):
 
 ### Dynamic Programming
 * `dp[i]` 跟 `dp[i - 1]` 的關係
+* examples
+    > [用 Backtracking 加上 Memo 去紀錄](https://leetcode.com/problems/maximum-total-reward-using-operations-i/solutions/5282367/easy-python-solution-brute-force-recursion-with-memoization-1d-dp-pls-upvote/)
 
 ```python
 # Top Down: DFS + Memo, think about whats the relation between index i and i - 1
