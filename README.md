@@ -90,4 +90,10 @@ def dfs(args):
 for i in 'something':
     dp[i] = 'some value'
 
+"""
+rerooting: 時常改變跟節點時使用，使用兩個 dfs
+第一個 dfs 指定個 root，計算題目要的解答
+第二個 dfs 從指定的 root children 計算他們跟 root 之間的差異
+EXAMPLE: https://leetcode.com/problems/minimum-edge-reversals-so-every-node-is-reachable/description/
+"""
 ```
