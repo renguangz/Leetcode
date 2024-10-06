@@ -15,6 +15,7 @@ https://leetcode.com/problems/minimum-cost-walk-in-weighted-graph/
 """
 parent = []  # 初始化陣列等於原始陣列
 
+
 def find(x: int):
     if parent[x] == x:
         return x
@@ -26,3 +27,31 @@ def union(x: int, y: int):
     if find(x) != find(y):
         parent[parent[y]] = parent[x]
 
+
+class UnionFind:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.rank = [1] * n
+        self.count = n
+
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])  # path compression
+        return self.parent[x]
+
+    def union(self, x, y):
+        """
+        union by size: 當要合併兩個子集，會希望是大的合併小的，會讓樹的高度比較小
+        union by rank: 根據 rank 大小決定合併，大的合併小的，合併別人的子集其 rank 會往上升
+        """
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x != root_y:
+            if self.rank[root_x] > self.rank[root_y]:
+                self.parent[root_y] = root_x
+            elif self.rank[root_x] < self.rank[root_x]:
+                self.parent[root_x] = root_y
+            else:
+                self.parent[root_y] = root_x
+                self.rank[root_x] += 1
+            self.count -= 1
